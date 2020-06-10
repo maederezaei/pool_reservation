@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
+    tools:context=".activities.Owner_Register_Page">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="92dp"
+        android:textSize="18sp"
+        android:text="آیا صاحب کسب و کار هستید؟"
+        android:textColor="#545050"
+        android:paddingRight="20dp"
+        android:textStyle="bold"
+        />
+
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="187dp"
+            android:background="@drawable/buttonbordershadow"
+            android:clickable="true"
+            android:onClick="buttonClick"
+            android:shadowColor="@color/colorPrimaryDark"
+            android:text="بله"
+            android:textColor="#ffffffff"
+            android:textSize="20sp"
+            tools:ignore="OnClick" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="253dp"
+            android:background="@drawable/buttonbordershadow"
+            android:clickable="true"
+            android:onClick="buttonOnClick"
+            android:shadowColor="@color/colorPrimaryDark"
+            android:text="خیر"
+            android:textColor="#ffffffff"
+            android:textSize="20sp"
+            tools:ignore="OnClick" />
+
+</RelativeLayout>

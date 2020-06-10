@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.Singup_Activity"
+    >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="92dp"
+        android:textSize="18sp"
+        android:text="شماره ی تلفن خود را وارد کنید:"
+        android:textColor="#545050"
+        android:paddingRight="20dp"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="187dp"
+        android:ems="10"
+        android:hint="شماره ی تلفن"
+        android:inputType="phone"
+        android:backgroundTint="#bab4ba"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:background="@drawable/buttonbordershadow"
+        android:layout_marginTop="253dp"
+        android:clickable="true"
+        android:text="تایید"
+        android:textSize="20sp"
+        android:textColor="#ffffffff"
+        android:onClick="click"
+        android:shadowColor="@color/colorPrimaryDark"/>
+
+
+</RelativeLayout>

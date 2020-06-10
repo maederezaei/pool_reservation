@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="city_name">
+        <item>تهران</item>
+        <item>اصفهان</item>
+        <item>خراسان رضوی</item>
+        <item>البرز</item>
+        <item>فارس</item>
+        <item>آذربایجان شرقی</item>
+        <item>قم</item>
+        <item>خوزستان</item>
+        <item>کرمانشاه</item>
+        <item>آذربایجان غربی</item>
+        <item>گیلان</item>
+        <item>سیستان و بلوچستان</item>
+        <item>همدان</item>
+        <item>کرمان</item>
+        <item>یزد</item>
+        <item>اردبیل</item>
+        <item>هرمزگان</item>
+        <item>مرکزی</item>
+        <item>زنجان</item>
+        <item>کردستان</item>
+    </string-array>
+</resources>
