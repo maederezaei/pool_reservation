@@ -1,0 +1,50 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- larger circle at the back -->
+    <item android:height="300dp" android:width="300dp" android:gravity="center">
+        <shape
+            android:shape="oval">
+
+            <solid
+                android:color="#1DAEEF"/>
+
+            <!-- thicker outer boarder -->
+
+        </shape>
+    </item>
+
+
+    <!-- inner circle -->
+    <item android:height="270dp" android:width="270dp" android:gravity="center">
+        <shape
+            android:shape="oval"  >
+            <solid
+                android:color="#3FB8EF"/>
+
+
+
+        </shape>
+    </item>
+    <item android:height="240dp" android:width="240dp" android:gravity="center">
+        <shape
+            android:shape="oval"  >
+            <solid
+                android:color="#7CDCE8"/>
+
+
+
+        </shape>
+    </item>
+    <item android:height="210dp" android:width="210dp" android:gravity="center">
+        <shape
+            android:shape="oval"  >
+            <solid
+                android:color="#A7D4E8"/>
+
+
+
+
+        </shape>
+    </item>
+
+
+</layer-list>

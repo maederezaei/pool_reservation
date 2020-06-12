@@ -14,23 +14,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="org.project.poolreservation.activities.Owner_Register_Page_First"></activity>
-        <activity android:name="org.project.poolreservation.activities.Customer_Register_Page" />
-        <activity android:name="org.project.poolreservation.customer_pay_page" />
-        <activity android:name="org.project.poolreservation.list_view" />
-        <activity android:name="org.project.poolreservation.pool_info_page" />
-        <activity android:name="org.project.poolreservation.user_main_page" />
-        <activity android:name="org.project.poolreservation.activities.UserTypePage">
+        <activity android:name=".activities.UserTypePage"></activity>
+        <activity android:name=".activities.Owner_Register_Page_First" />
+        <activity android:name=".activities.Customer_Register_Page" />
+        <activity android:name=".customer_pay_page" />
+        <activity android:name=".list_view" />
+        <activity android:name=".pool_info_page" />
+        <activity android:name=".user_main_page" />
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.project.poolreservation.activities.Verification_Activity" />
-        <activity android:name="org.project.poolreservation.activities.Public_register_Activity" />
-        <activity android:name="org.project.poolreservation.activities.Singup_Activity" />
-        <activity android:name="org.project.poolreservation.activities.Owner_Register_Page" />
+        <activity android:name=".activities.Verification_Activity" />
+        <activity android:name=".activities.Public_register_Activity" />
+        <activity android:name=".activities.Singup_Activity" />
+        <activity android:name=".activities.Owner_Register_Page" />
     </application>
 
 </manifest>

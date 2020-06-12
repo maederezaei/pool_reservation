@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -23,48 +20,36 @@ import org.project.poolreservation.R;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Public_register_Activity extends AppCompatActivity {
-
-    Spinner spinner;
-    String[] items;
-    Button button;
-    SharedPreferences vrificationActivityPreferences,userTypePagePreferences,signUpPagePreferences,splashActivityPreferences,preferences;
-
+public class SplashActivity extends AppCompatActivity {
+    SharedPreferences vrificationActivityPreferences,userTypePagePreferences,signUpPagePreferences,preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_public_register_);
+        setContentView(R.layout.activity_splash);
         vrificationActivityPreferences=getSharedPreferences("VerificatioActivityPref",MODE_PRIVATE);
         userTypePagePreferences=getSharedPreferences("UserTypePagePref",MODE_PRIVATE);
         signUpPagePreferences = getSharedPreferences("SignUpPagePref", MODE_PRIVATE);
-        splashActivityPreferences=getSharedPreferences("SplashActivtyPref",MODE_PRIVATE);
-        preferences=getSharedPreferences("PublicRegisterActivityPref",MODE_PRIVATE);
+        preferences=getSharedPreferences("SplashActivtyPref",MODE_PRIVATE);
 
-        button=findViewById(R.id.button2);
-        intSpinner();
-        button.setOnClickListener(new View.OnClickListener() {
+
+
+        Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-                if(!splashActivityPreferences.getString("token","NOT_FOUND").equals("NOT_FOUND")){
-                        Toast.makeText(Public_register_Activity.this,"we already have toke",Toast.LENGTH_SHORT).show();
+            public void run() {
+                if(vrificationActivityPreferences.getString("password","NOT_FOUND").equals("NOT_FOUND")){
+                    Intent intent=new Intent(SplashActivity.this,UserTypePage.class);
+                    startActivity(intent);
                 }else{
-                    Toast.makeText(Public_register_Activity.this,"we dont have toke",Toast.LENGTH_SHORT).show();
+                    System.out.println("***********splash*************");
                     generateTokensendJsonToserver();
-
                 }
-                  }
-        });
 
+                finish();
+            }
+        },3000);
     }
-
-    private void intSpinner() {
-        spinner=findViewById(R.id.spinner);
-        items=getResources().getStringArray(R.array.city_name);
-
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-    }
+    //-------------------------------------------------------------------------------------
     public void generateTokensendJsonToserver(){
         String url = "http://waterphone.ir/";
 
@@ -109,7 +94,7 @@ public class Public_register_Activity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
 
                 //now handle the response
-                Toast.makeText(Public_register_Activity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
                 System.out.println("------------------------------------------");
 
                 System.out.println(response.toString());
@@ -127,8 +112,8 @@ public class Public_register_Activity extends AppCompatActivity {
                     editor.putString("token",token);
                     editor.apply();
                 }
-
-
+                Intent intent=new Intent(SplashActivity.this,Public_register_Activity.class);
+                startActivity(intent);
 
             }
         }, new com.android.volley.Response.ErrorListener() {
@@ -136,7 +121,7 @@ public class Public_register_Activity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
                 //handle the error
-                Toast.makeText(Public_register_Activity.this, "An error occurred", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SplashActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
 
             }
