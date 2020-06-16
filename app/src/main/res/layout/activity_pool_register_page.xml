@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_margin="15dp"
     android:orientation="vertical"
-    tools:context=".activities.Owner_Register_Page">
+    tools:context=".activities.Pool_Register_Page">
 
 
     <EditText
@@ -19,9 +19,9 @@
         android:paddingRight="10dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/edt_border"
         android:textSize="16dp"
         android:gravity="right|center"
+        android:background="@drawable/back_2"
         android:layout_marginTop="20dp"
         />
 
@@ -35,9 +35,9 @@
         android:paddingRight="10dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/edt_border"
         android:textSize="16dp"
         android:layout_marginTop="75dp"
+        android:background="@drawable/back_2"
         android:gravity="right|center"/>
 
     <EditText
@@ -47,11 +47,11 @@
         android:ems="10"
         android:inputType="phone"
         android:layout_marginTop="130dp"
-        android:hint="شماره تلفن همراه مسئول استخر"
-        android:background="@drawable/edt_border"
+        android:hint="ظرفیت استخر"
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:textSize="16dp"
+        android:background="@drawable/back_2"
         android:gravity="right|center"/>
 
     <EditText
@@ -59,31 +59,27 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:ems="10"
-        android:inputType="phone"
-        android:layout_marginTop="185dp"
-        android:hint="کد ملی "
+        android:layout_marginTop="240dp"
+        android:hint="آدرباره ی استخر"
         android:gravity="right|center"
         android:paddingRight="10dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/edt_border"
+        android:background="@drawable/back_2"
         android:textSize="16dp"
-
-
         />
 
     <EditText
         android:id="@+id/editText5"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:inputType="textPersonName"
         android:hint="آدرس استخر "
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="185dp"
         android:paddingRight="10dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:background="@drawable/edt_border"
         android:textSize="16dp"
+        android:background="@drawable/back_2"
         android:gravity="right|center"
 
         />
@@ -93,14 +89,15 @@
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:background="#ff23ff"
         android:layout_marginTop="300dp"
         android:clickable="true"
         android:text="تایید"
         android:textSize="20sp"
         android:textColor="#ffffffff"
         android:onClick="buttOnClick"
-        android:shadowColor="#4967A3"/>
+        android:background="@drawable/buttonbordershadow"
+        android:shadowColor="@color/colorPrimaryDark"
+        />
 
 
 

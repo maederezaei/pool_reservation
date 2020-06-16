@@ -29,9 +29,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.Verification_Activity" />
+        <activity android:name=".activities.Owner_visit_sansActivity" />
         <activity android:name=".activities.Public_register_Activity" />
         <activity android:name=".activities.Singup_Activity" />
-        <activity android:name=".activities.Owner_Register_Page" />
+        <activity android:name=".activities.new_sans_Activity" />
+        <activity android:name=".activities.edit_sans_Activty" />
+        <activity android:name=".activities.Calendar_Activity" />
+        <activity android:name=".activities.DayOfWeekActivity" />
+        <activity android:name=".activities.Pool_Register_Page" />
     </application>
 
 </manifest>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.DayOfWeekActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center_vertical">
+
+        <org.project.poolreservation.custom_text.textview.NumberTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="انتخاب سانس"
+            android:textColor="#ffffff"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnTop"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:background="#ffffff"
+            android:text="هفته بعد"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16dp" />
+
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dayOfWeekRecy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actionbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/timeOfDayRecy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actionbar"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/filterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#6D000000">
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="60dp">
+
+            <Button
+                android:id="@+id/maleFilter"
+                android:layout_width="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="50dp"
+                android:text="آقایان"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18dp"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/femaleFilter"
+                android:layout_width="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:text="بانوان"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_height="50dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

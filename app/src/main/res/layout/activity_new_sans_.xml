@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="35dp"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:background="@drawable/back_2"
+        android:text="سانس جدید"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="35dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="138dp"
+        android:text="تاریخ"
+        android:textSize="18sp"
+        android:layout_alignRight="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/date_tv"
+        android:gravity="center"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_marginStart="80dp"
+        android:background="@drawable/back"
+        android:textSize="18dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="80dp" />
+
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView8"
+        android:layout_alignTop="@+id/finish_time"
+        android:text=" ساعت پایان "
+        android:textSize="18sp"
+        android:layout_alignRight="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignTop="@+id/start_time"
+        android:text=" ساعت شروع "
+        android:textSize="18sp"
+        android:layout_alignRight="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/start_time"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/date_tv"
+        android:layout_below="@+id/textView4"
+        android:layout_marginTop="33dp"
+        android:gravity="center"
+        android:background="@drawable/back"
+        android:ems="10"
+        android:clickable="true"
+        android:onClick="showDialog"
+        android:inputType="time"
+        android:layout_alignLeft="@+id/date_tv" />
+
+    <EditText
+        android:id="@+id/finish_time"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/date_tv"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/start_time"
+        android:background="@drawable/back"
+        android:onClick="showDialog"
+        android:ems="10"
+        android:gravity="center"
+        android:clickable="true"
+        android:inputType="time"
+        android:layout_alignLeft="@+id/date_tv" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/textView7"
+        android:textSize="18sp"
+        android:text="قیمت"
+        android:layout_alignRight="@+id/textView2" />
+
+    <EditText
+        android:id="@+id/price"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/date_tv"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/finish_time"
+        android:background="@drawable/back"
+        android:ems="10"
+        android:gravity="center"
+        android:clickable="true"
+        android:inputType="time"
+        android:layout_alignLeft="@+id/date_tv" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/textView10"
+        android:textSize="18sp"
+        android:text="جنسیت"
+        android:layout_alignRight="@+id/textView2" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/date_tv"
+        android:orientation="vertical"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/textView10"
+        android:layout_alignRight="@+id/date_tv">
+
+        <RadioButton
+            android:id="@+id/female_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:text="بانوان" />
+
+        <RadioButton
+            android:id="@+id/male_radio_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:text="آقایان" />
+
+    </RadioGroup>
+
+
+
+    <Button
+        android:id="@+id/verify"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="470dp"
+        android:background="@drawable/buttonbordershadow"
+        android:textSize="20sp"
+        android:text="تایید" />
+
+</RelativeLayout>

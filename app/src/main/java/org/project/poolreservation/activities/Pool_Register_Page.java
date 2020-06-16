@@ -20,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.project.poolreservation.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,11 +35,17 @@ public class Pool_Register_Page extends AppCompatActivity {
     public int selected_item=0;
     String token;
     Boolean next=false;
+    ArrayList<String> dateArray=new ArrayList<>();
+    String city="";
+    String state="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pool_register_page);
         token=getIntent().getStringExtra("token");
+        city=getIntent().getStringExtra("city");
+        state=getIntent().getStringExtra("state");
 
     }
 
@@ -63,8 +70,7 @@ public class Pool_Register_Page extends AppCompatActivity {
             if (isValidInput(poolName, poolNumber, Capacity, PoolInfo,AddressPool )) {
                 Toast.makeText(this,"Valid Input.",Toast.LENGTH_SHORT).show();
                 sendJsonToserver();
-                if(next)
-                    showDialog(view);
+                showDialog(view);
             }
         }
     }
@@ -91,7 +97,8 @@ public class Pool_Register_Page extends AppCompatActivity {
             Toast.makeText(this, "please enter the address", Toast.LENGTH_SHORT).show();
             addresspool.requestFocus();
             return false;}
-        else return true;
+        else
+            return true;
         }
 
     public void showDialog(View view){
@@ -109,13 +116,14 @@ public class Pool_Register_Page extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if(selected_item==0)
                         {
-                            Intent intent=new Intent(Pool_Register_Page.this,edit_sans_Activty.class);
+                            Intent intent=new Intent(Pool_Register_Page.this,new_sans_Activity.class);
+                            intent.putExtra("token",token);
                             startActivity(intent);
                         }
                         if(selected_item==1)
                         {
-                            Intent intent=new Intent(Pool_Register_Page.this,DayOfWeekActivity.class);
-                            startActivity(intent);
+                            sendJsonToserver_DayOfWeek();
+
                         }
 
 
@@ -131,7 +139,8 @@ public class Pool_Register_Page extends AppCompatActivity {
 //create post data as JSONObject - if your are using JSONArrayRequest use obviously an JSONArray :)
         JSONObject jsonBody = null;
         try {
-            String poolName = poolname.getText().toString();
+            String poolName =poolname.getText().toString();
+            poolName=poolName.replaceAll(" ","-");
             System.out.println("=====poolname:=="+poolName);
 
             String poolNumber = poolnumber.getText().toString();
@@ -140,44 +149,46 @@ public class Pool_Register_Page extends AppCompatActivity {
             String Capacity = capacity.getText().toString();
             System.out.println("=====Capacity:=="+Capacity);
 
-            String PoolInfo = poolInfo.getText().toString();
+            String PoolInfo =poolInfo.getText().toString();
+            PoolInfo=PoolInfo.replaceAll(" ","-");
             System.out.println("=====PoolInfo:=="+PoolInfo);
 
             String AddressPool = addresspool.getText().toString();
+            AddressPool=AddressPool.replaceAll(" ","-");
             System.out.println("=====AddressPool:=="+AddressPool);
 
-            String state="خراسان رضوی";
-            String city="مشهد";
+            city=city.replaceAll(" ","-");
+            state=state.replaceAll(" ","-");
             jsonBody = new JSONObject("{\"name\" " +
                     ": \"addPool\"," +
                     "\"param\" : {" +
                     "\"name\"" +
                     " :" +
-                    "\"pool\" " +
+                    poolName  +
                     "," +
                     "\"state\" " +
                     ":" +
-                    "\"pool\" " +
+                    state +
                     "," +
-                    "\"تهران\" " +
+                    "\"city\" " +
                     ":" +
-                    "\"pool\" " +
+                    city +
                     "," +
                     "\"phone\" " +
                     ":" +
-                    "\"08733660130\" " +
+                    poolNumber +
                     "," +
                     "\"capacity\" " +
                     ":" +
-                    "\"200\" " +
+                    Capacity +
                     "," +
                     "\"address\" " +
                     ":" +
-                    "\"pool\" " +
+                    AddressPool +
                     "," +
                     "\"info\" " +
                     ":" +
-                    "\"pool\" " +
+                    PoolInfo +
                     "}}");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -194,7 +205,7 @@ public class Pool_Register_Page extends AppCompatActivity {
 
                 System.out.println(response.toString());
                 if(response.toString().contains("200"))
-                    next=true;
+                    showDialog(findViewById(R.id.button5) );
             }
         }, new com.android.volley.Response.ErrorListener() {
             @Override
@@ -225,10 +236,92 @@ public class Pool_Register_Page extends AppCompatActivity {
 // Add the request to the queue
         Volley.newRequestQueue(this).add(jsonRequest);
     }
+    private void sendJsonToserver_DayOfWeek(){
+        String url = "http://waterphone.ir/";
 
+//create post data as JSONObject - if your are using JSONArrayRequest use obviously an JSONArray :)
+        JSONObject jsonBody = null;
+        try {
 
+            jsonBody = new JSONObject("{\"name\" " +
+                    ": \"getRemainingDays\"," +
+                    "\"param\" : {" +
+                    "\"name\"" +
+                    " :" +
+                    null +
+                    "}}");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+//request a json object response
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(com.android.volley.Request.Method.POST, url, jsonBody, new com.android.volley.Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                //now handle the response
+                Toast.makeText(Pool_Register_Page.this, response.toString(), Toast.LENGTH_SHORT).show();
+                System.out.println("------------------------------------------");
+
+                System.out.println(response.toString());
+
+                if(response.toString().contains("200"))
+                {
+                    String date="";
+                    int i =0;
+                    while (true){
+                        if(response.toString().charAt(i)=='d' & response.toString().charAt(i+3)=='e'){
+                            for(int j=1 ; j<13;j++)
+                            {
+                                date+=response.toString().charAt(j+i+6);
+                            }
+                            dateArray.add(date);
+                            date="";
+                        }
+                        i++;
+                        if(response.toString().charAt(i)==']')
+                            break;
+                    }
+                    System.out.println("&&&&&&&&&&&&&&&&"+dateArray);
+                    Intent intent=new Intent(Pool_Register_Page.this,DayOfWeekActivity.class);
+                    intent.putExtra("token",token);
+                    intent.putStringArrayListExtra("dateArray",dateArray);
+                    startActivity(intent);
+
+                }
+
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                //handle the error
+                Toast.makeText(Pool_Register_Page.this, "An error occurred", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+
+            }
+        }) {    //this is the part, that adds the header to the request
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("content-type", "application/json");
+                params.put("cache-control", "no-cache");
+                params.put("authorization","Bearer "+token);
+
+                return params;
+            }
+        };
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+// Add the request to the queue
+        Volley.newRequestQueue(this).add(jsonRequest);
     }
+
+
+
+}
 
 
 

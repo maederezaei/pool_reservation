@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,6 +29,8 @@ public class Public_register_Activity extends AppCompatActivity {
     Spinner spinner;
     String[] items;
     Button button;
+    EditText city;
+    String generaltoken;
     SharedPreferences vrificationActivityPreferences,userTypePagePreferences,signUpPagePreferences,splashActivityPreferences,preferences;
 
     @Override
@@ -40,21 +43,40 @@ public class Public_register_Activity extends AppCompatActivity {
         splashActivityPreferences=getSharedPreferences("SplashActivtyPref",MODE_PRIVATE);
         preferences=getSharedPreferences("PublicRegisterActivityPref",MODE_PRIVATE);
 
+        final String user_role=userTypePagePreferences.getString("UserRole","NOT_FOUND");
         button=findViewById(R.id.button2);
+        city=findViewById(R.id.city);
         intSpinner();
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!splashActivityPreferences.getString("token","NOT_FOUND").equals("NOT_FOUND")){
-                        Toast.makeText(Public_register_Activity.this,"we already have toke",Toast.LENGTH_SHORT).show();
+                    generaltoken=splashActivityPreferences.getString("token","NOT_FOUND");
+                    Toast.makeText(Public_register_Activity.this,"we already have toke",Toast.LENGTH_SHORT).show();
+                    finishActivity();
                 }else{
                     Toast.makeText(Public_register_Activity.this,"we dont have toke",Toast.LENGTH_SHORT).show();
                     generateTokensendJsonToserver();
 
                 }
-                  }
+
+            }
         });
 
+    }
+    public void finishActivity(){
+        final String user_role=userTypePagePreferences.getString("UserRole","NOT_FOUND");
+        if(user_role.equals("Owner")) {
+
+            Intent intent = new Intent(Public_register_Activity.this, Pool_Register_Page.class);
+            System.out.println("token just before send:=="+generaltoken);
+            intent.putExtra("token",generaltoken);
+            intent.putExtra("state",spinner.getSelectedItem().toString());
+            intent.putExtra("city",city.getText().toString());
+            startActivity(intent);
+        }else {
+
+        }
     }
 
     private void intSpinner() {
@@ -126,6 +148,9 @@ public class Public_register_Activity extends AppCompatActivity {
                     SharedPreferences.Editor editor=preferences.edit();
                     editor.putString("token",token);
                     editor.apply();
+                    generaltoken=token;
+                    finishActivity();
+                    System.out.println("token:=="+generaltoken);
                 }
 
 

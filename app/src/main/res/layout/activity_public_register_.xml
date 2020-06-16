@@ -24,14 +24,35 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="187dp" />
+        android:layout_marginTop="150dp" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="190dp"
+        android:textSize="18sp"
+        android:text="شهر خود را وارد کنید:"
+        android:textColor="#545050"
+        android:paddingRight="20dp"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/city"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"/>
+
     <Button
         android:id="@+id/button2"
         android:layout_width="300dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonbordershadow"
-        android:layout_marginTop="253dp"
+        android:layout_marginTop="300dp"
         android:clickable="true"
         android:text="تایید"
         android:textSize="20sp"

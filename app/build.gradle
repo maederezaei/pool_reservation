@@ -39,6 +39,13 @@ dependencies {
     //implementation 'com.android.support:recyclerview-v7:27.0.2'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
 
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
+
+    //Persian Date
+    implementation 'com.github.hamsaadev:Persian-Date-Picker-Dialog:V1.0'
+
     implementation 'com.android.volley:volley:1.1.0'
 
 }
