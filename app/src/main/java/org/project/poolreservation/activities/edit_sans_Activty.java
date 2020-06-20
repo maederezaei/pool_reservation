@@ -158,8 +158,26 @@ public class edit_sans_Activty extends AppCompatActivity implements DateHelper.D
                 gender="male";
             else if(female.isChecked())
                 gender="female";
-            System.out.println(finish_time);
 
+            if(start_time.charAt(2)!=':')
+                start_time="0"+start_time;
+            if(start_time.length()<5)
+                start_time=start_time.replace(":",":0");
+            start_time=start_time+":00";
+            // start_time=start_time.replaceAll(":","-");
+            System.out.println(start_time);
+            start_time="\""+start_time+"\"";
+            System.out.println(start_time);
+
+
+            if(finish_time.charAt(2)!=':')
+                finish_time="0"+finish_time;
+            if(finish_time.length()<5)
+                finish_time=finish_time.replace(":",":0");
+            finish_time=finish_time+":00";
+            //finish_time=finish_time.replaceAll(":","-");
+            finish_time="\""+finish_time+"\"";
+            System.out.println(finish_time);
             jsonBody = new JSONObject("{\"name\" " +
                     ": \"updateSection\"," +
                     "\"param\" : {" +
@@ -177,17 +195,17 @@ public class edit_sans_Activty extends AppCompatActivity implements DateHelper.D
                     "," +
                     "\"start_hour\" " +
                     ":" +
-                    "\"10:22:00\"" +
+                    start_time +
                     "," +
                     "\"end_hour\" " +
                     ":" +
-                    "\"10:22:00\"" +
+                    finish_time +
                     "," +
                     "\"gender\" " +
                     ":" +
                     gender +
                     "," +
-                    "\"discount\" " +
+                    "\"cost\" " +
                     ":" +
                     price +
                     "}}");

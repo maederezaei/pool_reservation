@@ -163,18 +163,18 @@ public class SansAdapter extends ArrayAdapter {
                     }
                     int end_hour_index=response.toString().indexOf("end_hour");
                     for(int i=0;i<5;i++){
-                        end_hour+=response.toString().charAt(start_hour_index+13+i);
+                        end_hour+=response.toString().charAt(end_hour_index+11+i);
                     }
                     int gender_index=response.toString().indexOf("gender");
                     for(int i=0;i<6;i++){
                         gender+=response.toString().charAt(gender_index+9+i);
                     }
-                    int price_index=response.toString().indexOf("discount");
+                    int price_index=response.toString().indexOf("cost");
                     int a=0;
                     while (true){
-                        price+=response.toString().charAt(price_index+a+11);
+                        price+=response.toString().charAt(price_index+a+7);
                         a++;
-                        if(response.toString().charAt(price_index+11+a)=='"')
+                        if(response.toString().charAt(price_index+7+a)=='"')
                             break;
                     }
 

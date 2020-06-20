@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.project.poolreservation.R;
+import org.project.poolreservation.UserMainPage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -75,7 +76,12 @@ public class Public_register_Activity extends AppCompatActivity {
             intent.putExtra("city",city.getText().toString());
             startActivity(intent);
         }else {
-
+            Intent intent = new Intent(Public_register_Activity.this, UserMainPage.class);
+            System.out.println("token just before send:=="+generaltoken);
+            intent.putExtra("token",generaltoken);
+            intent.putExtra("state",spinner.getSelectedItem().toString());
+            intent.putExtra("city",city.getText().toString());
+            startActivity(intent);
         }
     }
 

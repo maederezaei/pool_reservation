@@ -5,12 +5,12 @@ import java.util.List;
 public class DayOfWeek {
     private String day;
     private String date;
-    private List<TimeOfDay>timeOfDays=null;
+    //private List<TimeOfDay>timeOfDays=null;
 
-    public DayOfWeek(String day, String date, List<TimeOfDay> timeOfDays) {
+    public DayOfWeek(String day, String date) {
         this.day = day;
         this.date = date;
-        this.timeOfDays = timeOfDays;
+        //this.timeOfDays = timeOfDays;
     }
 
     public String getDay() {
@@ -29,11 +29,11 @@ public class DayOfWeek {
         this.date = date;
     }
 
-    public List<TimeOfDay> getTimeOfDays() {
+  /*  public List<TimeOfDay> getTimeOfDays() {
         return timeOfDays;
     }
 
     public void setTimeOfDays(List<TimeOfDay> timeOfDays) {
         this.timeOfDays = timeOfDays;
-    }
+    }*/
 }

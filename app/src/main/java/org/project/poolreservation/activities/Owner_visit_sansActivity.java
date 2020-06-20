@@ -36,7 +36,7 @@ public class Owner_visit_sansActivity extends AppCompatActivity {
     ArrayList<String> end_hour_arr=new ArrayList<>();
     ArrayList<String> gender_arr=new ArrayList<>();
     ArrayList<String> reserved_num_arr=new ArrayList<>();
-    TextView title_date_edittext;
+    TextView title_date_edittext,date_tv;
     String date="";
     RelativeLayout no_sans;
     @Override
@@ -46,6 +46,7 @@ public class Owner_visit_sansActivity extends AppCompatActivity {
         title_date_edittext=findViewById(R.id.title_date);
         listView=findViewById(R.id.listView);
         no_sans=findViewById(R.id.no_sans);
+        date_tv=findViewById(R.id.date_tv);
         sans=new ArrayList<>();
         id=getIntent().getStringArrayListExtra("id");
         start_hour_arr=getIntent().getStringArrayListExtra("start_hour");
@@ -55,8 +56,12 @@ public class Owner_visit_sansActivity extends AppCompatActivity {
         date=getIntent().getStringExtra("date");
         token=getIntent().getStringExtra("token");
 
+        if(!date.equals(""))
         title_date_edittext.setText(date);
-
+        else {
+            date_tv.setVisibility(View.INVISIBLE);
+            no_sans.setVisibility(View.VISIBLE);
+        }
         int size=id.size();
         for(int i=0;i<size;i++)
             //sendJsonToserver(id.get(i),size,i);

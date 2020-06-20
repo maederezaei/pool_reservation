@@ -43,7 +43,7 @@ public class TimeOfDayAdaptor extends RecyclerView.Adapter<TimeOfDayAdaptor.View
 
         holder.time.setText(items.get(position).getTime());
 
-        if (items.get(position).getGender() == 0) {
+        if (items.get(position).getGender().equals("male")) {
             holder.gender.setText("آقایان");
         }else {
             holder.gender.setText("بانوان");

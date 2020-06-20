@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 xmlns:tools="http://schemas.android.com/tools"
-tools:context=".user_main_page">
+tools:context=".UserMainPage">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -37,21 +37,12 @@ tools:context=".user_main_page">
         </SearchView>
     </LinearLayout>
 
-
-
-    <ListView
-        android:id="@+id/listview"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyPools"
         android:layout_width="match_parent"
-        android:layout_height="1000dp"
-        />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="599dp"
-
-        />
+        android:layout_height="wrap_content"/>
 
 
 </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

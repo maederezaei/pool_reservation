@@ -2,16 +2,19 @@ package org.project.poolreservation.models;
 
 public class TimeOfDay {
     private String time;
-    private int gender;
+    private String gender;
     private int capacity;
     private int off;
+    private String price;
+    private String id;
     private boolean show=true;
 
-    public TimeOfDay(String time, int gender, int capacity, int off) {
+    public TimeOfDay(String id,String price,String time, String gender, int capacity) {
+        this.price=price;
+        this.id=id;
         this.time = time;
         this.gender = gender;
         this.capacity = capacity;
-        this.off = off;
     }
 
     public String getTime() {
@@ -22,11 +25,11 @@ public class TimeOfDay {
         this.time = time;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

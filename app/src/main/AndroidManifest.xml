@@ -14,13 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.UserTypePage"></activity>
+        <activity android:name="org.project.PoolResetvation.pool_row"></activity>
+        <activity android:name="org.project.PoolResetvation.Owner_register_page" />
+        <activity android:name="org.project.PoolResetvation.Customer_Reserved_Page" />
+        <activity android:name="org.project.PoolResetvation.Reservation_page" />
+        <activity android:name=".activities.UserTypePage" />
         <activity android:name=".activities.Owner_Register_Page_First" />
         <activity android:name=".activities.Customer_Register_Page" />
-        <activity android:name=".customer_pay_page" />
         <activity android:name=".list_view" />
         <activity android:name=".pool_info_page" />
-        <activity android:name=".user_main_page" />
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,6 +39,7 @@
         <activity android:name=".activities.Calendar_Activity" />
         <activity android:name=".activities.DayOfWeekActivity" />
         <activity android:name=".activities.Pool_Register_Page" />
+        <activity android:name=".UserMainPage"/>
     </application>
 
 </manifest>

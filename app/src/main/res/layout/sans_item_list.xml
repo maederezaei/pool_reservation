@@ -46,13 +46,17 @@
             android:id="@+id/edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Button"
+            android:background="@drawable/buttonbordershadow"
+            />
 
         <Button
             android:id="@+id/delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="Button"
+            android:background="@drawable/buttonbordershadow"
+            />
 
     </LinearLayout>
 </LinearLayout>

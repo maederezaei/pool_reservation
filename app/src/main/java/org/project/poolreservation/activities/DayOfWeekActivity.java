@@ -51,6 +51,16 @@ public class DayOfWeekActivity extends AppCompatActivity {
     ArrayList<String> dayArray5=new ArrayList<>();
     ArrayList<String> dayArray6=new ArrayList<>();
     ArrayList<String> dayArray7=new ArrayList<>();
+    String poolId="";
+    String user_role="";
+
+    ArrayList<String> genderArr=new ArrayList<>();
+    ArrayList<String> startHourArr=new ArrayList<>();
+    ArrayList<String> endHourArr=new ArrayList<>();
+    ArrayList<String> priceArr=new ArrayList<>();
+    ArrayList<String> reservedNumArr=new ArrayList<>();
+    ArrayList<String> sectionIdArr=new ArrayList<>();
+
 
 
 
@@ -60,8 +70,13 @@ public class DayOfWeekActivity extends AppCompatActivity {
         setContentView(R.layout.activity_day_of_week);
         userTypePagePref=getSharedPreferences("UserTypePagePref",MODE_PRIVATE);
 
+        user_role=userTypePagePref.getString("UserRole","NOT_FOUND");
+
         dateArray=getIntent().getStringArrayListExtra("dateArray");
         token=getIntent().getStringExtra("token");
+        if(user_role.equals("Customer"))
+            poolId=getIntent().getStringExtra("poolId");
+
         setArrayValues();
 
         setDateFake();
@@ -97,7 +112,7 @@ public class DayOfWeekActivity extends AppCompatActivity {
             public void onClick(View view) {
                 filterLayout.setVisibility(View.GONE);
                 for (int i = 0; i < timeOfDayList.size(); i++) {
-                    if (timeOfDayList.get(i).getGender() == 1) {
+                    if (timeOfDayList.get(i).getGender().equals("female")) {
                         timeOfDayList.get(i).setShow(false);
                     } else {
                         timeOfDayList.get(i).setShow(true);
@@ -112,7 +127,7 @@ public class DayOfWeekActivity extends AppCompatActivity {
             public void onClick(View view) {
                 filterLayout.setVisibility(View.GONE);
                 for (int i = 0; i < timeOfDayList.size(); i++) {
-                    if (timeOfDayList.get(i).getGender() == 0) {
+                    if (timeOfDayList.get(i).getGender().equals("male")) {
                         timeOfDayList.get(i).setShow(false);
                     } else {
                         timeOfDayList.get(i).setShow(true);
@@ -128,38 +143,42 @@ public class DayOfWeekActivity extends AppCompatActivity {
     private void setDateFake() {
 
         List<TimeOfDay> times = new ArrayList<>();
-        times.add(new TimeOfDay("08-10", 0, 5, 20));
-        times.add(new TimeOfDay("10-12", 0, 5, 20));
+       /* for(int i=0;i<genderArr.size();i++) {
+            times.add(new TimeOfDay(sectionIdArr.get(i), priceArr.get(i), startHourArr.get(i) + " - " + endHourArr.get(i),
+                    genderArr.get(i), 0));
+        }*/
+        times.add(new TimeOfDay("1", "0", "5", "male",2));
+       /* times.add(new TimeOfDay("10-12", 0, 5, 20));
         times.add(new TimeOfDay("13-15", 0, 20, 50));
         times.add(new TimeOfDay("15-18", 1, 5, 10));
-        times.add(new TimeOfDay("18-20", 1, 50, 0));
+        times.add(new TimeOfDay("18-20", 1, 50, 0));*/
 
         int size=dateArray.size();
         System.out.println("------------"+size);
         if(size==1)
-            dayOfWeekList.add(new DayOfWeek(dayArray1.get(0), dateArray.get(0).replace("\\/", "-"), times));
+            dayOfWeekList.add(new DayOfWeek(dayArray1.get(0), dateArray.get(0).replace("\\/", "-")));
 
         if(size==2)
             for(int i=0;i<2;i++)
-                dayOfWeekList.add(new DayOfWeek(dayArray2.get(i), dateArray.get(i).replace("\\/", "-"), times));
+                dayOfWeekList.add(new DayOfWeek(dayArray2.get(i), dateArray.get(i).replace("\\/", "-")));
         if(size==3)
             for(int i=0;i<3;i++)
-                dayOfWeekList.add(new DayOfWeek(dayArray3.get(i), dateArray.get(i).replace("\\/", "-"), times));
+                dayOfWeekList.add(new DayOfWeek(dayArray3.get(i), dateArray.get(i).replace("\\/", "-")));
         if(size==4)
             for(int i=0;i<4;i++)
-                dayOfWeekList.add(new DayOfWeek(dayArray4.get(i), dateArray.get(i).replace("\\/", "-"), times));
+                dayOfWeekList.add(new DayOfWeek(dayArray4.get(i), dateArray.get(i).replace("\\/", "-")));
 
         if(size==5)
             for(int i=0;i<5;i++)
-                dayOfWeekList.add(new DayOfWeek(dayArray5.get(i), dateArray.get(i).replace("\\/", "-"), times));
+                dayOfWeekList.add(new DayOfWeek(dayArray5.get(i), dateArray.get(i).replace("\\/", "-")));
 
         if(size==6)
             for(int i=0;i<6;i++)
-                dayOfWeekList.add(new DayOfWeek(dayArray6.get(i), dateArray.get(i).replace("\\/", "-"), times));
+                dayOfWeekList.add(new DayOfWeek(dayArray6.get(i), dateArray.get(i).replace("\\/", "-")));
 
         if(size==7)
             for(int i=0;i<7;i++)
-                dayOfWeekList.add(new DayOfWeek(dayArray7.get(i), dateArray.get(i).replace("\\/", "-"), times));
+                dayOfWeekList.add(new DayOfWeek(dayArray7.get(i), dateArray.get(i).replace("\\/", "-")));
 /*
         dayOfWeekList.add(new DayOfWeek("شنبه", "1399/03/01", times));
         dayOfWeekList.add(new DayOfWeek("یکشنبه", "1399/03/02", times));
@@ -172,12 +191,13 @@ public class DayOfWeekActivity extends AppCompatActivity {
 
 
     public void showTimeOfDay(DayOfWeek dayOfWeek) {
-        String user_role=userTypePagePref.getString("UserRole","NOT_FOUND");
-        if(user_role.equals("Customer")) {
+        /*if(user_role.equals("Customer")) {
+
+            sendJsonToserver_getSection(dayOfWeek.getDate(),dayOfWeek.getDay(),poolId);
             title.setText(dayOfWeek.getDay() + " (" + dayOfWeek.getDate() + ")");
             topBtn.setText("فیلتر");
 
-            timeOfDayList = dayOfWeek.getTimeOfDays();
+          //  timeOfDayList = dayOfWeek.getTimeOfDays();
             if (timeOfDayList != null && timeOfDayList.size() > 0) {
                 for (int i = 0; i < timeOfDayList.size(); i++) {
                     timeOfDayList.get(i).setShow(true);
@@ -194,8 +214,22 @@ public class DayOfWeekActivity extends AppCompatActivity {
             day=dayOfWeek.getDay();
             sendJsonToserver();
 
+        }*/
+        if (user_role.equals("Customer")) {
+
+            sendJsonToserver_getSection(dayOfWeek.getDate(), dayOfWeek.getDay(), poolId);
+            title.setText(dayOfWeek.getDay() + " (" + dayOfWeek.getDate() + ")");
+            topBtn.setText("فیلتر");
+
+        } else if (user_role.equals("Owner")) {
+            date = dayOfWeek.getDate();
+            day = dayOfWeek.getDay();
+            sendJsonToserver();
+
         }
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -257,6 +291,7 @@ public class DayOfWeekActivity extends AppCompatActivity {
 
         date=date.replace("\\/", "-");
         System.out.println("------"+date);
+        day=day.replaceAll(" ","-");
         System.out.println(day);
         try {
 
@@ -285,19 +320,19 @@ public class DayOfWeekActivity extends AppCompatActivity {
                 System.out.println("------------------------------------------");
                 System.out.println(response.toString());
                 String date="";
-                if(response.toString().contains("\"status\":200")){
-                    ArrayList<String> id=new ArrayList<>();
-                    ArrayList<String> start_hour_arr=new ArrayList<>();
-                    ArrayList<String> end_hour_arr=new ArrayList<>();
-                    ArrayList<String> gender_arr=new ArrayList<>();
-                    ArrayList<String> reserved_num_arr=new ArrayList<>();
-
-                    int date_index=response.toString().indexOf("date");
-                    for( int i=0 ;i<10;i++)
+                if(response.toString().contains("\"status\":200")) {
+                    ArrayList<String> id = new ArrayList<>();
+                    ArrayList<String> start_hour_arr = new ArrayList<>();
+                    ArrayList<String> end_hour_arr = new ArrayList<>();
+                    ArrayList<String> gender_arr = new ArrayList<>();
+                    ArrayList<String> reserved_num_arr = new ArrayList<>();
+                    if (response.toString().contains("date"))
                     {
-                        date+=response.toString().charAt(date_index+i+7);
+                        int date_index = response.toString().indexOf("date");
+                    for (int i = 0; i < 10; i++) {
+                        date += response.toString().charAt(date_index + i + 7);
                     }
-
+                    }
                     String response1=response.toString();
                     while (response1.contains("\"id\""))
                     {   String iditem="";
@@ -321,7 +356,7 @@ public class DayOfWeekActivity extends AppCompatActivity {
                         }
                         int end_hour_index=response1.indexOf("end_hour");
                         for(int i=0;i<5;i++){
-                            end_hour+=response1.charAt(start_hour_index+13+i);
+                            end_hour+=response1.charAt(end_hour_index+11+i);
                         }
                         int gender_index=response1.indexOf("gender");
                         for(int i=0;i<6;i++){
@@ -397,6 +432,152 @@ public class DayOfWeekActivity extends AppCompatActivity {
 // Add the request to the queue
         Volley.newRequestQueue(this).add(jsonRequest);
     }
+
+    private void sendJsonToserver_getSection(String date1, String day1, final String poolId){
+        String url = "http://waterphone.ir/";
+
+//create post data as JSONObject - if your are using JSONArrayRequest use obviously an JSONArray :)
+        JSONObject jsonBody = null;
+
+        date1=date1.replace("\\/", "-");
+        System.out.println("------"+date1);
+        day1=day1.replaceAll(" ","-");
+        System.out.println(day1);
+        int id=Integer.valueOf(poolId);
+        try {
+
+            jsonBody = new JSONObject("{\"name\" " +
+                    ": \"getSectionByDateAndDayCustomer\"," +
+                    "\"param\" : {" +
+                    "\"id\"" +
+                    " :" +
+                    id +
+                    "," +
+                    "\"day\"" +
+                    " :" +
+                    day1 +
+                    "," +
+                    "\"date\" " +
+                    ":" +
+                    date1 +
+                    "}}");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//request a json object response
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(com.android.volley.Request.Method.POST, url, jsonBody, new com.android.volley.Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+
+                //now handle the response
+                Toast.makeText(DayOfWeekActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                System.out.println("------------------------------------------");
+                System.out.println(response.toString());
+                ArrayList<String> sectionArray=new ArrayList<>();
+                if( response.toString().contains("200")){
+
+                    int start_array_index=response.toString().indexOf("[")+1;
+                    String poolItem="";
+                    if(response.toString().charAt(start_array_index)!=']') {
+                        while (true) {
+                            poolItem += response.toString().charAt(start_array_index);
+                            if (response.toString().charAt(start_array_index) == '}') {
+                                sectionArray.add(poolItem);
+                                System.out.println(poolItem);
+                                poolItem = "";
+                                start_array_index++;
+                                if (response.toString().charAt(start_array_index) == ']')
+                                    break;
+                            }
+                            start_array_index++;
+
+                        }
+                        System.out.println(sectionArray);
+
+                    }
+
+
+                    for(int i=0;i<sectionArray.size();i++)
+                    {
+                        try {
+                            JSONObject jsonObject=new JSONObject(sectionArray.get(i));
+                            if(jsonObject.getString("pool_id").equals(poolId)  )
+                            {
+                                genderArr.add(jsonObject.getString("gender"));
+                                priceArr.add(jsonObject.getString("cost"));
+                                startHourArr.add(jsonObject.getString("start_hour"));
+                                endHourArr.add(jsonObject.getString("end_hour"));
+                                reservedNumArr.add(jsonObject.getString("reserved_number"));
+                                sectionIdArr.add(jsonObject.getString("id"));
+
+
+
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    System.out.println(genderArr);
+                    System.out.println(priceArr);
+                    System.out.println(startHourArr);
+                    System.out.println(endHourArr);
+                    System.out.println(reservedNumArr);
+                    System.out.println(sectionIdArr);
+
+                    /* for(int i=0;i<genderArr.size();i++) {
+            times.add(new TimeOfDay(sectionIdArr.get(i), priceArr.get(i), startHourArr.get(i) + " - " + endHourArr.get(i),
+                    genderArr.get(i), 0));
+        }*/
+
+                    timeOfDayList.add(new TimeOfDay("1", "0", "5", "male", 2));
+                    timeOfDayList.add(new TimeOfDay("2", "1200", "4", "famle", 2));
+                    timeOfDayList.add(new TimeOfDay("3", "15000", "6", "male", 2));
+
+                    if (timeOfDayList != null && timeOfDayList.size() > 0) {
+                        for (int i = 0; i < timeOfDayList.size(); i++) {
+                            timeOfDayList.get(i).setShow(true);
+                        }
+                        dayOfWeekRecy.setVisibility(View.GONE);
+                        timeOfDayRecy.setVisibility(View.VISIBLE);
+                        timeOfDayRecy.setAdapter(new TimeOfDayAdaptor(timeOfDayList, DayOfWeekActivity.this));
+                    } else {
+                        Toast.makeText(DayOfWeekActivity.this, "زمانی یافت نشد", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                //handle the error
+                Toast.makeText(DayOfWeekActivity.this, "An error occurred", Toast.LENGTH_SHORT).show();
+                error.printStackTrace();
+
+            }
+        }) {    //this is the part, that adds the header to the request
+            @Override
+            public Map<String, String> getHeaders() {
+                System.out.println("------token:---------"+token);
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("content-type", "application/json");
+                params.put("cache-control", "no-cache");
+                params.put("authorization","Bearer "+token);
+
+
+                return params;
+            }
+        };
+        jsonRequest.setRetryPolicy(new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+// Add the request to the queue
+        Volley.newRequestQueue(this).add(jsonRequest);
+    }
+
 
 
 

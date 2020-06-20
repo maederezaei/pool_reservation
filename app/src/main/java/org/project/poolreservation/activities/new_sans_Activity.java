@@ -126,9 +126,6 @@ public class new_sans_Activity extends AppCompatActivity implements DateHelper.D
             Log.d(TAG, "onDateSelected: " + datePersian);
 
 
-
-
-
         }
     }
 
@@ -147,7 +144,25 @@ public class new_sans_Activity extends AppCompatActivity implements DateHelper.D
             else if(radioButton_felmale.isChecked())
                 gender="female";
 
+            if(start_time.charAt(2)!=':')
+                start_time="0"+start_time;
+            if(start_time.length()<5)
+                start_time=start_time.replace(":",":0");
+            start_time=start_time+":00";
+           // start_time=start_time.replaceAll(":","-");
+            System.out.println(start_time);
+            start_time="\""+start_time+"\"";
+            System.out.println(start_time);
 
+
+            if(finish_time.charAt(2)!=':')
+                finish_time="0"+finish_time;
+            if(finish_time.length()<5)
+                finish_time=finish_time.replace(":",":0");
+            finish_time=finish_time+":00";
+            //finish_time=finish_time.replaceAll(":","-");
+            finish_time="\""+finish_time+"\"";
+            System.out.println(finish_time);
             jsonBody = new JSONObject("{\"name\" " +
                     ": \"addSection\"," +
                     "\"param\" : {" +
@@ -161,17 +176,17 @@ public class new_sans_Activity extends AppCompatActivity implements DateHelper.D
                     "," +
                     "\"start_hour\" " +
                     ":" +
-                    "\"12:12:00\"" +
+                    start_time +
                     "," +
                     "\"end_hour\" " +
                     ":" +
-                    "\"12:12:00\"" +
+                    finish_time +
                     "," +
                     "\"gender\" " +
                     ":" +
                     gender +
                     "," +
-                    "\"discount\" " +
+                    "\"cost\" " +
                     ":" +
                     prices +
                     "}}");

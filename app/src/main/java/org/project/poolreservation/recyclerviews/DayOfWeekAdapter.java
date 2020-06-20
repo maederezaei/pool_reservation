@@ -1,6 +1,7 @@
 package org.project.poolreservation.recyclerviews;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ public class DayOfWeekAdapter extends RecyclerView.Adapter<DayOfWeekAdapter.View
 
     private List<DayOfWeek>items;
     private Context context;
+    SharedPreferences userTypePagePref;
+
 
     public DayOfWeekAdapter(List<DayOfWeek> items, Context context) {
         this.items = items;
